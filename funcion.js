@@ -9,6 +9,11 @@ let temporizador=false;
 let timer=50;
 let timerInicial=50;
 let tiempoRegresivoId=null;
+let winAdio=new Audio("sounds/win.mp3");
+let loseAdio=new Audio("sounds/lose.mp3");
+let clickAudio=new Audio("sounds/click.mp3");
+let rightAudio=new Audio("sounds/right.mp3");
+let wrongAudio=new Audio("sounds/wrong.mp3");
 let mostrarMovimientos=document.getElementById("movimientos");
 let mostrarAciertos=document.getElementById("aciertos");
 let mostrarTiempo=document.getElementById("t-restante");
@@ -45,12 +50,12 @@ function destapar(id){
     if(tarjetasDestapadas==1){
         tarjeta1=document.getElementById(id);
         primerResultado=numeros[id];
-        tarjeta1.innerHTML=`<img src="./img/${primerResultado}.png">`;
+        tarjeta1.innerHTML=`<img src="img/${primerResultado}.png">`;
         tarjeta1.disabled=true;
     }else if(tarjetasDestapadas==2){
         tarjeta2=document.getElementById(id);
         segundoResultado=numeros[id];
-        tarjeta2.innerHTML=`<img src="./img/${segundoResultado}.png">`;
+        tarjeta2.innerHTML=`<img src="img/${segundoResultado}.png">`;
         tarjeta2.disabled=true;
         movimientos++;
         mostrarMovimientos.innerHTML=`Movimientos: ${movimientos}`;
@@ -61,7 +66,7 @@ function destapar(id){
             if(aciertos==8){
                 clearInterval(tiempoRegresivoId);
                 mostrarAciertos.innerHTML=`Aciertos: ${aciertos} <br> Ganaste!!!`;
-                mostrarTiempo.innerHTML=`Tiempo: ${timer} segundos`;
+                mostrarTiempo.innerHTML=`Tiempo: ${timerInicial-timer} segundos`;
                 mostrarMovimientos.innerHTML=`Movimientos: ${movimientos} <br> Felicidades!!!`;
             }
         }else{
@@ -71,7 +76,7 @@ function destapar(id){
                 tarjeta1.disabled=false;
                 tarjeta2.disabled=false;
                 tarjetasDestapadas=0;
-            },1000);
+            },700);
         }
     }
 }
