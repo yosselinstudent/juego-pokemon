@@ -28,6 +28,7 @@ function contarTiempo(){
         if(timer==0){
             clearInterval(tiempoRegresivoId);
             bloquearTarjetas();
+            loseAdio.play();
         }
     },1000);
 }
@@ -51,6 +52,7 @@ function destapar(id){
         tarjeta1=document.getElementById(id);
         primerResultado=numeros[id];
         tarjeta1.innerHTML=`<img src="img/${primerResultado}.png">`;
+        clickAudio.play();
         tarjeta1.disabled=true;
     }else if(tarjetasDestapadas==2){
         tarjeta2=document.getElementById(id);
@@ -68,6 +70,7 @@ function destapar(id){
                 mostrarAciertos.innerHTML=`Aciertos: ${aciertos} <br> Ganaste!!!`;
                 mostrarTiempo.innerHTML=`Tiempo: ${timerInicial-timer} segundos`;
                 mostrarMovimientos.innerHTML=`Movimientos: ${movimientos} <br> Felicidades!!!`;
+                winAdio.play();
             }
         }else{
             setTimeout(()=>{
@@ -76,6 +79,7 @@ function destapar(id){
                 tarjeta1.disabled=false;
                 tarjeta2.disabled=false;
                 tarjetasDestapadas=0;
+                wrongAudio.play();
             },700);
         }
     }
